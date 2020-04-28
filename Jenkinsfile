@@ -103,7 +103,7 @@ pipeline
 		    //sh 'echo "Components added newly in Input Data are:" > generatedFile.txt'
                 sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdata_new.html" >> generatedFile.html'
 		    //sh 'echo "Components that were in Archive and not in current Input Data:" >> generatedFile.txt'
-		     sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdataarchive_new.html" >> generatedFile.txt'
+		     sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdataarchive_new.html" >> generatedFile.html'
 
             }
         }
