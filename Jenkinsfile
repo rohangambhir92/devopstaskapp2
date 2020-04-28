@@ -43,12 +43,12 @@ pipeline
 		stage ('Sonar Analysis')
 		{
 			steps
-			{
+			{ /*
 				echo "Executing Sonar analysis"
 				withSonarQubeEnv("sonar_linux_slave") 
 				{
 					sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
-				}
+				} */
 				echo "Done"
 			}
 		}
@@ -56,7 +56,22 @@ pipeline
 		{ 
 			steps
 			{ 
-				
+				script
+     {
+      echo  "\u2600 **********Uploading to JFrog artifactory*****************"
+      //artifactoryMaven.tool = 'maven'
+      def server = Artifactory.server 'artifactory@1012712648'
+      def buildInfo = Artifactory.newBuildInfo()
+      buildInfo.env.capture = true
+      buildInfo.env.collect()
+      def rtMaven = Artifactory.newMavenBuild()
+      rtMaven.tool = 'Maven3.5.3'
+      rtMaven.deployer releaseRepo:'ci.infrastructure.verification', snapshotRepo:'ci.infrastructure.verification', server: server
+      rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
+               server.publishBuildInfo buildInfo
+              
+     }
+				/*
 				rtMavenDeployer (
                     id: 'deployer',
                     serverId: 'artifactory@1012712648',
@@ -72,7 +87,7 @@ pipeline
                     serverId: 'artifactory@1012712648',
                 )
 			
-			
+			*/
 				echo "Pushing to artifactory"
 			}
 		} 
