@@ -57,7 +57,7 @@ pipeline
 			{
 				rtMavenDeployer (
                     id: 'deployer',
-                    serverId: '123456789@artifactory',
+                    serverId: 'artifactory@1012712648',
                     releaseRepo: 'rohangambhir.devopstaskapp2',
                     snapshotRepo: 'rohangambhir.devopstaskapp2'
                 )
@@ -67,7 +67,7 @@ pipeline
                     deployerId: 'deployer',
                 )
                 rtPublishBuildInfo (
-                    serverId: '123456789@artifactory',
+                    serverId: 'artifactory@1012712648',
                 )
 			}
 		}   
@@ -75,9 +75,14 @@ pipeline
 	}
 	post 
 	{
-        always 
-		{
-			echo "*********** Executing post tasks like Email notifications *****************"
-        }
+        success 
+         {
+            mail body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
+		 }
+         failure 
+         {
+            mail body: "Pipeline job for infrastructure validation encountered a failure. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment failed.", to: "rohan.gambhir@nagarro.com"
+			
+         }
     }
 }
