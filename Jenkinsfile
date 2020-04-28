@@ -62,8 +62,6 @@ pipeline
       //artifactoryMaven.tool = 'maven'
       def server = Artifactory.server 'artifactory@1012712648'
       def buildInfo = Artifactory.newBuildInfo()
-      buildInfo.env.capture = true
-      buildInfo.env.collect()
       def rtMaven = Artifactory.newMavenBuild()
       rtMaven.tool = 'Maven3.5.3'
       rtMaven.deployer releaseRepo:'ci.infrastructure.verification', snapshotRepo:'ci.infrastructure.verification', server: server
