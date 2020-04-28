@@ -55,6 +55,7 @@ pipeline
 		{
 			steps
 			{
+				/*
 				rtMavenDeployer (
                     id: 'deployer',
                     serverId: 'artifactory@1012712648',
@@ -70,7 +71,17 @@ pipeline
                     serverId: 'artifactory@1012712648',
                 )
 			}
-		}   
+			*/
+				echo "Pushing to artifactory"
+		} 
+		
+		stage('Execute Script')
+        	{
+            	steps{
+            	echo "executing script on 200 DevOps server"
+            	sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo /usr/local/bin/python3.6 /home/scm_admin/architecture_builder_scripts/data_archive.py"'        
+            	}
+        }
 	    
 	}
 	post 
