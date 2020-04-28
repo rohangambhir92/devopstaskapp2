@@ -100,6 +100,7 @@ pipeline
 	    
 	    stage('Download Files') {
             steps {
+		    sh 'pwd'
 		    sh 'echo "Current Input Data:" > generatedFile.html'
                 sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdata.html" >> generatedFile.html'
 		    sh 'echo "Latest Archived Input Data:" >> generatedFile.html'
