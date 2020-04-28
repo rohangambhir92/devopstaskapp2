@@ -70,9 +70,10 @@ pipeline
                 rtPublishBuildInfo (
                     serverId: 'artifactory@1012712648',
                 )
-			}
+			
 			*/
 				echo "Pushing to artifactory"
+			}
 		} 
 		
 		stage('Execute Script')
