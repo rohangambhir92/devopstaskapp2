@@ -43,12 +43,13 @@ pipeline
 		stage ('Sonar Analysis')
 		{
 			steps
-			{
+			{/*
 				echo "Executing Sonar analysis"
 				withSonarQubeEnv("sonar_linux_slave") 
 				{
 					sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
-				}
+				}*/
+				echo "Done"
 			}
 		}
 		stage ('Upload to Artifactory')
@@ -86,7 +87,7 @@ pipeline
 	    
 	    stage('Download Files') {
             steps {
-                sh 'echo "artifact file" > generatedFile.txt'
+                sh '"sshpass -p $userpass ssh scm_admin@10.127.128.200 sudo cat /root/inputdiffdata_new.csv" > generatedFile.txt'
             }
         }
 	    
@@ -96,7 +97,7 @@ pipeline
         success 
          {
 		 archiveArtifacts artifacts: 'generatedFile.txt', onlyIfSuccessful: true
-            emailext attachLog: true, attachmentsPattern: 'generatedFile.txt', body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
+            emailext attachmentsPattern: 'generatedFile.txt', body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
 		 }
          failure 
          {
