@@ -102,9 +102,9 @@ pipeline
             steps {
 		    sh 'echo "Current Input Data:" > generatedFile.html'
                 sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdata.html" >> generatedFile.html'
-		    sh 'echo "Latest Archived Input Data:" > generatedFile.html'
+		    sh 'echo "Latest Archived Input Data:" >> generatedFile.html'
                 sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdataarchive.html" >> generatedFile.html'
-		    sh 'echo "Components added newly in Input Data are:" > generatedFile.html'
+		    sh 'echo "Components added newly in Input Data are:" >> generatedFile.html'
                 sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdata_new.html" >> generatedFile.html'
 		    sh 'echo "Components that were in Archive and not in current Input Data:" >> generatedFile.html'
 		     sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdataarchive_new.html" >> generatedFile.html'
