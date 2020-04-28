@@ -101,7 +101,7 @@ pipeline
 	    
 	    stage('Download Files') {
             steps {
-		    //sh 'scp scm_admin@10.127.128.200 /home/scm_admin/architecture_builder_scripts/padding.css /data/admin/jenkins/.jenkins/workspace/${env.JOB_NAME}'
+		    sh 'scp scm_admin@10.127.128.200 /home/scm_admin/architecture_builder_scripts/padding.css root@10.127.127.203:/data/admin/jenkins/.jenkins/workspace/${env.JOB_NAME}'
 		    sh 'echo "Current Input Data:" > generatedFile.html'
                 sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdata.html" >> generatedFile.html'
 		    sh 'echo "Latest Archived Input Data:" >> generatedFile.html'
