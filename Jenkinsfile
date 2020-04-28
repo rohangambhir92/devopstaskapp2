@@ -97,7 +97,7 @@ pipeline
         success 
          {
 		 archiveArtifacts artifacts: 'generatedFile.pdf', onlyIfSuccessful: true
-            emailext attachmentsPattern: 'generatedFile.txt', body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
+            emailext attachmentsPattern: 'generatedFile.pdf', body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
 		 }
          failure 
          {
