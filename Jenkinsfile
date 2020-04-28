@@ -45,7 +45,7 @@ pipeline
 			steps
 			{
 				echo "Executing Sonar analysis"
-				withSonarQubeEnv("Test_Sonar") 
+				withSonarQubeEnv("sonar_linux_slave") 
 				{
 					sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
 				}
