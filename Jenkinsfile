@@ -87,7 +87,7 @@ pipeline
 	    
 	    stage('Download Files') {
             steps {
-                sh '"sshpass -p $userpass ssh scm_admin@10.127.128.200 sudo cat /root/inputdiffdata_new.csv" > generatedFile.txt'
+                sh ' "sshpass -p $userpass ssh scm_admin@10.127.128.200 'sudo cat /root/inputdiffdata_new.csv'" > generatedFile.txt'
             }
         }
 	    
