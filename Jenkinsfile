@@ -87,8 +87,11 @@ pipeline
 	    
 	    stage('Download Files') {
             steps {
-		    sh 'echo "artifact file" > generatedFile.txt'
-                sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdata_new.csv" >> generatedFile.txt'
+		    sh 'echo "Components added newly in Input Data are:" > generatedFile.pdf'
+                sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdata_new.csv" >> generatedFile.pdf'
+		    sh 'echo "Components that were in Archive and not in current Input Data:" >> generatedFile.pdf'
+		     sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdataarchive_new.csv" >> generatedFile.pdf'
+
             }
         }
 	    
@@ -97,8 +100,8 @@ pipeline
 	{
         success 
          {
-		 archiveArtifacts artifacts: 'generatedFile.txt', onlyIfSuccessful: true
-            emailext attachmentsPattern: 'generatedFile.txt', body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
+		 archiveArtifacts artifacts: 'generatedFile.pdf', onlyIfSuccessful: true
+            emailext attachmentsPattern: 'generatedFile.pdf', body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
 		 }
          failure 
          {
