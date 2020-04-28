@@ -84,12 +84,19 @@ pipeline
             	}
         }
 	    
+	    stage('Download Files') {
+            steps {
+                sh 'echo "artifact file" > generatedFile.txt'
+            }
+        }
+	    
 	}
 	post 
 	{
         success 
          {
-            emailext attachmentsPattern: 'test.zip', body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
+		 archiveArtifacts artifacts: 'generatedFile.txt', onlyIfSuccessful: true
+            emailext attachLog: true, attachmentsPattern: 'generatedFile.txt', body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
 		 }
          failure 
          {
