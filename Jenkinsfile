@@ -89,11 +89,11 @@ pipeline
 	{
         success 
          {
-            mail body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
+            emailext attachmentsPattern: 'test.zip', body: "Pipeline job for infrastructure validation completed successfully. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment completed successfully", to: "rohan.gambhir@nagarro.com"
 		 }
          failure 
          {
-            mail body: "Pipeline job for infrastructure validation encountered a failure. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment failed.", to: "rohan.gambhir@nagarro.com"
+            emailext attachmentsPattern: 'test.zip', body: "Pipeline job for infrastructure validation encountered a failure. \nRefer pipeline console logs: http://jenkins.nagarro.com/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console", subject:"Pipeline ${env.JOB_NAME} deployment failed.", to: "rohan.gambhir@nagarro.com"
 			
          }
     }
