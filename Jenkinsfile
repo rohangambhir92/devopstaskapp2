@@ -58,8 +58,8 @@ pipeline
 				rtMavenDeployer (
                     id: 'deployer',
                     serverId: 'artifactory@1012712648',
-                    releaseRepo: 'rohangambhir.devopstaskapp2',
-                    snapshotRepo: 'rohangambhir.devopstaskapp2'
+                    releaseRepo: 'ci.infrastructure.verification',
+                    snapshotRepo: 'ci.infrastructure.verification'
                 )
                 rtMavenRun (
                     pom: 'pom.xml',
