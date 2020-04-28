@@ -43,12 +43,12 @@ pipeline
 		stage ('Sonar Analysis')
 		{
 			steps
-			{/*
+			{
 				echo "Executing Sonar analysis"
 				withSonarQubeEnv("sonar_linux_slave") 
 				{
 					sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
-				}*/
+				}
 				echo "Done"
 			}
 		}
@@ -56,7 +56,7 @@ pipeline
 		{
 			steps
 			{
-				/*
+				
 				rtMavenDeployer (
                     id: 'deployer',
                     serverId: 'artifactory@1012712648',
@@ -72,7 +72,7 @@ pipeline
                     serverId: 'artifactory@1012712648',
                 )
 			
-			*/
+			
 				echo "Pushing to artifactory"
 			}
 		} 
