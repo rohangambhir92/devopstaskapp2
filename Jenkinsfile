@@ -87,7 +87,7 @@ pipeline
                 )
 			
 			*/
-				echo "Pushing to artifactory"
+			echo "Pushing to artifactory"
 			}
 		} 
 		
