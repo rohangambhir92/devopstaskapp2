@@ -1,6 +1,6 @@
 pipeline
 {
-    agent { label 'Devops_POC_Linux' }
+    agent { label 'Linux_Slave' }
 	tools
 	{
 		maven 'Maven3'
