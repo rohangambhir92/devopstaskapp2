@@ -44,19 +44,19 @@ pipeline
 		stage ('Sonar Analysis')
 		{
 			steps
-			{ /*
+			{ 
 				echo "Executing Sonar analysis"
 				withSonarQubeEnv("sonar_linux_slave") 
 				{
 					sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
-				}*/
+				}
 				echo "Done"
 			}
 		}
 		stage ('Upload to Artifactory')
 		{ 
 			steps
-			{ /*
+			{ 
 				script
      {
       echo  "\u2600 **********Uploading to JFrog artifactory*****************"
