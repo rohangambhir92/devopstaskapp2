@@ -102,7 +102,7 @@ pipeline
 	    stage('Download Files') {
             steps {
 		    //sh 'sshpass -p $userpass scp scm_admin@10.127.128.200 /home/scm_admin/architecture_builder_scripts/padding.css root@10.127.127.203:/data/admin/jenkins/.jenkins/workspace/CI_Infrastructure_Verification'
-		    sh 'echo "<b>Current Input Data:</b></br>" > generatedFile.html'
+		    sh 'echo "<p>Current Input Data:</p></br>" > generatedFile.html'
                 sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdata.html" >> generatedFile.html'
 		    sh 'echo "<br><br>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br><br><b>Latest Archived Input Data:</b></br>" >> generatedFile.html'
                 sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdataarchive.html" >> generatedFile.html'
@@ -111,7 +111,7 @@ pipeline
 		    sh 'echo "<br><br>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br><br><b>Components that were in Archive and not in current Input Data:</b></br>" >> generatedFile.html'
 		     sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdataarchive_new.html" >> generatedFile.html'
 		    sh 'echo "<br><br>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br><br><b>Please refer to Database for more details.</b>" >> generatedFile.html'
-
+			sh 'echo "<style>  p {color: red; font-weight: bold} </style>" >> generatedFile.html'
             }
         }
 	    
