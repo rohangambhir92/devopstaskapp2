@@ -56,11 +56,11 @@ pipeline
 		stage ('Upload to Artifactory')
 		{ 
 			steps
-			{ /*
+			{ 
 				script
      {
       echo  "\u2600 **********Uploading to JFrog artifactory*****************"
-      //artifactoryMaven.tool = 'maven'
+      artifactoryMaven.tool = 'maven'
       def server = Artifactory.server 'artifactory@1012712648'
       def buildInfo = Artifactory.newBuildInfo()
       def rtMaven = Artifactory.newMavenBuild()
@@ -69,7 +69,7 @@ pipeline
       rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
                server.publishBuildInfo buildInfo
               
-     } */	rtMavenResolver (
+     } /*	rtMavenResolver (
    		 id: 'resolver-unique-id',
     		serverId: 'artifactory@1012712648',
     		releaseRepo: 'ci.infrastructure.verification',
@@ -90,7 +90,7 @@ pipeline
                     serverId: 'artifactory@1012712648',
                 )
 			
-			
+			*/
 			echo "Pushing to artifactory"
 			}
 		} 
