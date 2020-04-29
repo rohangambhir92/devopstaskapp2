@@ -111,7 +111,7 @@ pipeline
 		    sh 'echo "<br><br>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br><br><p>Components that were in Archive and not in current Input Data:</p></br>" >> generatedFile.html'
 		     sh 'sshpass -p $userpass ssh scm_admin@10.127.128.200 "sudo cat /root/inputdiffdataarchive_new.html" >> generatedFile.html'
 		    sh 'echo "<br><br>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br><br><p>Please refer to Database for more details.</p>" >> generatedFile.html'
-			sh 'echo "<style>p {color: red; font-weight: bold} table:nth-of-type(3) td {color:blue} table:nth-of-type(4) td {color:orange}</style>" >> generatedFile.html'
+			sh 'echo "<style>p {color: red; font-weight: bold} table:nth-of-type(3) td {color:blue;background:yellow} table:nth-of-type(4) td {color:orange;background:grey}</style>" >> generatedFile.html'
             }
         }
 	    
