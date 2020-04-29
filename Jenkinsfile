@@ -59,15 +59,15 @@ pipeline
 			{ 
 				script
      {
-      echo  "\u2600 **********Uploading to JFrog artifactory*****************"
-      artifactoryMaven.tool = 'maven'
+      echo  "**********Uploading to JFrog artifactory*****************"
+      //artifactoryMaven.tool = 'maven'
       def server = Artifactory.server 'artifactory@1012712648'
       def buildInfo = Artifactory.newBuildInfo()
       def rtMaven = Artifactory.newMavenBuild()
       rtMaven.tool = 'Maven3.5.3'
       rtMaven.deployer releaseRepo:'ci.infrastructure.verification', snapshotRepo:'ci.infrastructure.verification', server: server
       rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
-               server.publishBuildInfo buildInfo
+      server.publishBuildInfo buildInfo
               
      } /*	rtMavenResolver (
    		 id: 'resolver-unique-id',
